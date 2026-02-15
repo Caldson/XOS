@@ -1,9 +1,7 @@
 from tkinter import filedialog
 from tkinter import messagebox
-from tkinter import ttk
 import tkinter as tk
 import os
-import chardet
 print("等待安装系统...")
 # 安装表格
 """
