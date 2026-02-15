@@ -6,6 +6,8 @@ print("等待安装系统...")
 # 安装表格
 """
 files
+    desktop
+        none
     none
 apps
     none
@@ -32,44 +34,13 @@ with open(path + "os_password.txt", "w") as f:
     f.write("")
 with open(path + "os_key_canuse.txt", "w") as f:
     f.write("0")
-print("等待选择XOS扩展...")
-select_extension = tk.Tk()
-select_extension.title("选择XOS扩展")
-select_extension.resizable(False, False)
-select_extension_list = ["XSA（XOS系统基础应用）", "PowerShell"]
-extension_select = tk.StringVar(value="XSA（XOS系统基础应用）")
-for i in range(len(select_extension_list)):
-    tk.Radiobutton(select_extension, text=select_extension_list[i], variable=extension_select, value=select_extension_list[i]).pack(side=tk.LEFT)
-checked_extensions = []
-def confirm_select_extensions():
-    global checked_extensions
-    for i in range(len(select_extension_list)):
-        if extension_select.get() == select_extension_list[i]:
-            checked_extensions.append(select_extension_list[i])
-    if len(checked_extensions) != 0:
-        print("已选择扩展：",extension_select.get())
-        select_extension.destroy()
-    else:
-        messagebox.showerror("错误", "请选择一个扩展")
-confirm_select_extensions_button = tk.Button(select_extension, text="确认/取消", command=confirm_select_extensions).pack(padx=10, side=tk.LEFT)
-select_extension.mainloop()
-del select_extension
-del select_extension_list
-del confirm_select_extensions
-del confirm_select_extensions_button
-if extension_select.get() == 'PowerShell':
-    with open(path + "apps/PowerShell.xsa", "w") as f:
-        f.write("PowerShell")
-    print("已安装PowerShell")
-elif extension_select.get() == 'XSA（XOS系统基础应用）':
-    with open(path + "apps/PowerShell.xsa", "w") as f:
-        f.write("PowerShell")
-    with open(path + "apps/Calculator.xsa", "w") as f:
-        f.write("calc")
-    with open(path + "apps/Notepad.xsa", "w") as f:
-        f.write("notepad")
-    print("已安装XSA（XOS系统基础应用）")
-del extension_select
+with open(path + "apps/PowerShell.xsa", "w") as f:
+    f.write("PowerShell")
+with open(path + "apps/Calculator.xsa", "w") as f:
+    f.write("calc")
+with open(path + "apps/Notepad.xsa", "w") as f:
+    f.write("notepad")
+print("已安装XSA（XOS系统基础应用）")
 print("安装完成XOS。请完成窗口中的问题，这可能需要一些时间。")
 question_window = tk.Tk()
 question_window.title("XOS系统问题")
